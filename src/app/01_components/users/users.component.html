@@ -1,0 +1,90 @@
+<div class="columns">
+    <div class="column">
+    <article class="message">
+        <div class="message-header">
+          <p>Input Fields</p>
+          <button class="delete" aria-label="delete"></button>
+        </div>
+        <div class="message-body">
+            <div class="field">
+                <label class="label">Name</label>
+                <div class="control">
+                  <input 
+                  class="input is-primary" 
+                  type="text"
+                  [value] = "name" #inputname
+                  required="required"
+                  placeholder="e.g Alex Smith"/>
+                </div>
+              </div>
+              <div class="field">
+                <label class="label">UserName</label>
+                <div class="control">
+                  <input 
+                  class="input is-primary" 
+                  type="text"
+                  [value] = "username" #inputusername
+                  required="required"
+                  placeholder="enter username"/>
+                </div>
+              </div>
+              <div class="field">
+                <label class="label">Email</label>
+                <div class="control">
+                  <input 
+                    class="input is-primary"
+                    type="email"
+                    [value] = "email" #inputemail
+                    required="required"
+                    placeholder="e.g. alexsmith@gmail.com"/>
+                </div>
+              </div>
+              <div class="buttons is-justify-content-center">
+              <button class="button is-primary is-rounded"
+              (click)="takeInput(inputname, inputusername, inputemail)"
+              >Add User</button>
+              </div>
+        </div>
+      </article>
+    </div>
+    <div class="column">
+        <article class="message">
+            <div class="message-header">
+              <p>No of Users.</p>
+              <button class="delete" aria-label="delete"></button>
+            </div>
+            <div class="message-body">
+                <div class="table-container">
+                    <table class="table" *ngIf = "users.length > 0; else noUsers">
+                      <tr>
+                        <th>Sr.no</th>
+                        <th>name</th>
+                        <th>Username</th>
+                        <th>Email</th>
+                      </tr>
+                      <tr
+                       *ngFor = "let u of users; index as i"
+                       >
+                       <td>{{i}}</td>
+                         <td>{{u.name}}</td>
+                         <td>{{u.username}}</td>
+                         <td ngrHighlighter>{{u.email}}</td>
+                         <td>
+                            <button
+                              class="button is-danger is-small"
+                              (click)="deleteUser(i)"
+                            >
+                        Delete User
+                            </button>
+                      </tr>
+                    </table>
+                  </div>
+                  <ng-template #noUsers>
+
+                    <p class="no-users">No Users Available</p>
+              
+                  </ng-template>
+            </div>
+          </article>
+    </div>
+</div>
